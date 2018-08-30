@@ -13,6 +13,9 @@ class IndexController {
     public function loginPost() {
         $email = $_POST['email'];
         $password = hash('sha512', $_POST['password']);
+        ////
+        $cookie_name = "email";
+        setcookie($cookie_name, $email, time() + (86400 * 30), "/");
 
         $results = App::get('database')->select('SELECT * FROM users WHERE email = :email AND password = "'.$password.'" ', array(':email' => $email));
 

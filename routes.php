@@ -22,8 +22,11 @@ $router->get('logout', 'Login\Controllers\IndexController@logout');
 
 $router->get('dashboard', 'Base\Controllers\DashboardController@dashboard', 'restricted');
 
+$router->get('attendance', 'Attendance\Controllers\AttendanceController@attendance', 'restricted');
+
 /*
  * POST routes
  */
 
 $router->post('loginPost', 'Login\Controllers\IndexController@loginPost');
+$router->post('startAt', 'Attendance\Controllers\AttendanceController@startAt');

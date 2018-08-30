@@ -2,27 +2,31 @@
 <form method="POST" action="/startAt">
     <button type="submit" class="submit">Start</button>
 </form>
-<table class="attendance">
+<div class="attendance" style="float: left; width: 80%">
     <?php
-    foreach (array_reverse($dates) as $currentDate => $date):
-    ?><tr><td><?php echo $currentDate; ?></td></tr><?php
-    $count = 0;
-    if($currentDate!=date("m.d.y")){
-    if(count($date)%2!=0){
-        echo "<tr><td>Wrong dates</td></tr>";
-        continue;
-    }}
-    foreach ($date as $item):
-    if ($count % 2 != 0) { ?>
-        <td><?php echo "Out: " . date("Y-m-d H:i:s", $item); ?></td></tr><?php
-    } else { ?>
-    <tr>
-        <td><?php echo "In: " . date("Y-m-d H:i:s", $item); ?></td>
 
-        <?php } ?>
+    foreach ($dates as $currentDate => $date):
+        $totalHours = 0;
+        $worked = 0;
+         foreach($date as $times) {
+             $totalHours += $times['value'];
+         }
+         echo "<div class='date-d'>$currentDate</div>";
+        ?><div class="progress-bar" style="max-width: 50%;">
+        <?php foreach($date as $times):
+        if ($times['type'] == 1){
+            $worked += $times['value'];
+        }
+        if($totalHours==0){
+            $lenght = 0;
+        }else{
+        $lenght = ($times['value']*100) / $totalHours;}
+        $backgroundColor = ($times['type'] == 0) ? 'grey' : 'green';
+        ?>
+            <div style="float: left;width: <?php echo $lenght ?>%; background: <?php echo $backgroundColor ?>; height: 10px;"></div>
         <?php
-        $count++;
-        endforeach;
-        endforeach; ?>
-</table>
+
+    endforeach; ?></div><div class="total-worked">Worked: <?php echo gmdate("H:i:s", $worked); ?> </div>
+    <?php endforeach; ?>
+</div>
 <?php include('views/partials/footer.view.php') ?>
