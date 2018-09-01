@@ -23,6 +23,7 @@ $router->get('logout', 'Login\Controllers\IndexController@logout');
 $router->get('dashboard', 'Base\Controllers\DashboardController@dashboard', 'restricted');
 
 $router->get('attendance', 'Attendance\Controllers\AttendanceController@attendance', 'restricted');
+$router->get('employee', 'Base\Controllers\DashboardController@employee');
 
 /*
  * POST routes

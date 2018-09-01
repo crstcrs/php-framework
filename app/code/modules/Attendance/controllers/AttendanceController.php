@@ -43,12 +43,8 @@ class AttendanceController
         return App::get('helper')->view('attendance/attendance', ['bodyClasses' => 'attendance','dates'=>$hours]);
     }
     public function startAt() {
-        $cookie_name = "email";
-        if(!isset($_COOKIE[$cookie_name])) {
-        } else {
-            $id = Login::isLoggedIn();
-            App::get('database')->update('INSERT INTO attendance (user_id,date) VALUES ("'.$id.'","'.time().'")');
-            Helper::redirect("/attendance");
-        }
+        $id = Login::isLoggedIn();
+        App::get('database')->update('INSERT INTO attendance (user_id,date) VALUES ("'.$id.'","'.time().'")');
+        Helper::redirect("/attendance");
     }
 }

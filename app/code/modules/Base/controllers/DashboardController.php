@@ -8,6 +8,11 @@ use App\Code\Modules\Login\Models\Login;
 class DashboardController
 {
     public function dashboard() {
-        return App::get('helper')->view('dashboard/index', ['bodyClasses' => 'dashboard']);
+        $position = App::get('database')->select('SELECT position FROM users WHERE id="'.Login::isLoggedIn().'"');
+        $employees = App::get('database')->select('SELECT id,firstname,lastname FROM users ');
+        return App::get('helper')->view('dashboard/index', ['bodyClasses' => 'dashboard','position'=>$position[0]->position,'employees'=>$employees]);
+    }
+    public function employee(){
+        echo "yes";
     }
 }
