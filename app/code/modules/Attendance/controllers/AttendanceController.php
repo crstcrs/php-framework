@@ -9,7 +9,12 @@ use App\Code\Modules\Login\Models\Login;
 class AttendanceController
 {
     public function attendance() {
-        $dates = App::get('database')->select('SELECT date FROM attendance WHERE user_id ="'.Login::isLoggedIn().'" ORDER BY date ASC');
+        if(isset($_POST['var'])) {
+            $id = $_POST['var'];
+        }else{
+            $id = Login::isLoggedIn();
+        }
+        $dates = App::get('database')->select('SELECT date FROM attendance WHERE user_id ="'.$id.'" ORDER BY date ASC');
         $sortedDates=array();
         foreach($dates as $date){
             $sortedDates[date("d.m.y",$date->date)][] = $date->date;

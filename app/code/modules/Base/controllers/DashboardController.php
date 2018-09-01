@@ -12,7 +12,4 @@ class DashboardController
         $employees = App::get('database')->select('SELECT id,firstname,lastname FROM users ');
         return App::get('helper')->view('dashboard/index', ['bodyClasses' => 'dashboard','position'=>$position[0]->position,'employees'=>$employees]);
     }
-    public function employee(){
-        echo "yes";
-    }
 }
