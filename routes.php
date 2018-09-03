@@ -24,10 +24,13 @@ $router->get('dashboard', 'Base\Controllers\DashboardController@dashboard', 'res
 
 $router->get('attendance', 'Attendance\Controllers\AttendanceController@attendance', 'restricted');
 
+$router->get('timetrack', 'Timetrack\Controllers\TimetrackController@timetrack', 'restricted');
+
 /*
  * POST routes
  */
-
 $router->post('loginPost', 'Login\Controllers\IndexController@loginPost');
+
 $router->post('startAt', 'Attendance\Controllers\AttendanceController@startAt');
+
 $router->post('attendance', 'Attendance\Controllers\AttendanceController@attendance');
