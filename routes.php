@@ -26,6 +26,7 @@ $router->get('attendance', 'Attendance\Controllers\AttendanceController@attendan
 
 $router->get('timetrack', 'Timetrack\Controllers\TimetrackController@timetrack', 'restricted');
 
+
 /*
  * POST routes
  */
@@ -34,3 +35,5 @@ $router->post('loginPost', 'Login\Controllers\IndexController@loginPost');
 $router->post('startAt', 'Attendance\Controllers\AttendanceController@startAt');
 
 $router->post('attendance', 'Attendance\Controllers\AttendanceController@attendance');
+
+$router->post('vacation', 'Vacation\Controllers\VacationController@vacation', 'restricted');

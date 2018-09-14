@@ -203,40 +203,76 @@ input.input {
     border-radius: 8px;
     cursor: pointer;
 }
-
-body.attendance form, body.attendance .copyright,
-body.attendance .attendance-container, .sidebar, body.attendance .attendance-tab .date-d{
-    display: inline-block;
-}
-.attendance-container{
+.table-container{
     width:80%;
-}
-.attendance-tab{
-    float: left;
-    clear: left;
-    width: 60% !important;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column-reverse;
-}
-body.attendance form{
-    padding: 15px;
-    text-align: center;
-    width: 60%;
-}
-.date-d{
-    font-weight: bold;
-    width: 100%;
-    padding-bottom: 10px;
-    text-align: center;
-}
-.progress{
-    margin: auto;
-    margin-bottom: 0 !important;
-}
-.total-worked{
     display: inline-block;
-    padding-right: 40px;
-    float: right;
-    transform: translate3d(40%,-86%,0);
 }
+table {
+    margin: 10px;
+    border-collapse: collapse;
+    width: 90%;
+    margin-bottom: 20px;
+}
+table thead {
+    background: #ccc;
+    border-top: 1px solid #ddd;
+}
+.table-title{
+    background: #ccc;
+    border-top: 1px solid #ddd;
+    margin-top:10px;
+    margin-left: 10px;
+    width:90%;
+    text-align: center;
+}
+td {
+    border: 1px solid #ddd;
+    margin: 2px;
+}
+thead, tbody, tr{
+    width: 100%;
+}
+th, td{
+    text-align: center !important;
+}
+table tbody tr:nth-child(odd){
+    background: #f9f9f9;
+    padding: 15px 0;
+}
+
+/*body.attendance form, body.attendance .copyright,*/
+/*body.attendance .attendance-container, .sidebar, body.attendance .attendance-tab .date-d{*/
+    /*display: inline-block;*/
+/*}*/
+/*.attendance-container{*/
+    /*width:80%;*/
+/*}*/
+/*.attendance-tab{*/
+    /*float: left;*/
+    /*clear: left;*/
+    /*width: 60% !important;*/
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*flex-direction: column-reverse;*/
+/*}*/
+/*body.attendance form{*/
+    /*padding: 15px;*/
+    /*text-align: center;*/
+    /*width: 60%;*/
+/*}*/
+/*.date-d{*/
+    /*font-weight: bold;*/
+    /*width: 100%;*/
+    /*padding-bottom: 10px;*/
+    /*text-align: center;*/
+/*}*/
+/*.progress{*/
+    /*margin: auto;*/
+    /*margin-bottom: 0 !important;*/
+/*}*/
+/*.total-worked{*/
+    /*display: inline-block;*/
+    /*padding-right: 40px;*/
+    /*float: right;*/
+    /*transform: translate3d(40%,-86%,0);*/
+/*}*/
