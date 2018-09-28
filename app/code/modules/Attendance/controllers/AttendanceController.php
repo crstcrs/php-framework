@@ -9,9 +9,8 @@ use App\Code\Modules\Login\Models\Login;
 class AttendanceController
 {
     public function attendance() {
-        $user = App::get('database')->select('SELECT role_id FROM users WHERE id ="'.Login::isLoggedIn().'"');
-        if(isset($_POST['var']) && $user[0]->role_id == '1') {
-            $id = $_POST['var'];
+        if(isset($_POST['id']) && App::get('helper')->isAdmin()) {
+            $id = $_POST['id'];
         }else{
             $id = Login::isLoggedIn();
         }
@@ -50,12 +49,9 @@ class AttendanceController
             }
         }
         $list=array();
-        if (isset($_POST['month'])){
-            $month = $_POST['month'];
-        }
-        else{
-            $month = date ('m');
-        }
+
+        $month = isset($_POST['month']) ? $_POST['month'] : date ('m');
+
         for($d=1; $d<=31; $d++)
         {
             $time=mktime(12, 0, 0, $month, $d, date('Y'));

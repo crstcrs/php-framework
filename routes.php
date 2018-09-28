@@ -26,6 +26,12 @@ $router->get('attendance', 'Attendance\Controllers\AttendanceController@attendan
 
 $router->get('timetrack', 'Timetrack\Controllers\TimetrackController@timetrack', 'restricted');
 
+$router->get('holiday', 'Holiday\Controllers\HolidayController@holiday', 'restricted');
+
+$router->get('expenses', 'Expenses\Controllers\ExpensesController@expenses', 'restricted');
+
+$router->get('expensesAdd', 'Expenses\Controllers\ExpensesController@expensesAdd', 'restricted');
+
 
 /*
  * POST routes
@@ -37,3 +43,9 @@ $router->post('startAt', 'Attendance\Controllers\AttendanceController@startAt');
 $router->post('attendance', 'Attendance\Controllers\AttendanceController@attendance');
 
 $router->post('vacation', 'Vacation\Controllers\VacationController@vacation', 'restricted');
+
+$router->post('pay', 'Expenses\Controllers\ExpensesController@pay', 'restricted');
+
+$router->post('expenses', 'Expenses\Controllers\ExpensesController@expenses', 'restricted');
+
+$router->post('expensesAdd', 'Expenses\Controllers\ExpensesController@expensesAdd', 'restricted');

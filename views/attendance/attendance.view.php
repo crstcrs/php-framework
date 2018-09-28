@@ -3,22 +3,20 @@
     <button type="submit" class="submit">Start</button>
 </form>
 <form id="foo" method="POST" action="">
-    <label >Fiter</label>
-    <select name="month">
-        <option value="01">January</option>
-        <option value="02">February</option>
-        <option value="03">March</option>
-        <option value="04">April</option>
-        <option value="05">May</option>
-        <option value="06">June</option>
-        <option value="07">July</option>
-        <option value="08">August</option>
-        <option value="09">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
+    <label >Filter</label>
+    <select name="month" onchange='if(this.value != 0) { this.form.submit(); }'>
+        <?php
+        for($m=1; $m<=12; ++$m) {
+            echo date('F', mktime(0, 0, 0, $m, 1)) . '<br>';
+            ?>
+            <option value="<?php echo sprintf("%02d", $m);?>" <?php if(isset($_POST['month']) && $_POST['month'] == sprintf("%02d", $m)){ echo 'selected';}elseif(!isset($_POST['month']) && $m == date ('m')){echo 'selected';} ?>><?php echo date('F', mktime(0, 0, 0, $m, 1)); ?></option>
+            <?php
+        }
+        ?>
     </select>
-    <input type="submit" value="Select" />
+    <?php if(isset($_POST['id'])){
+        echo "<input type='hidden' name='id' value='".$_POST['id']."'>";
+    }?>
 </form>
 <div class="table-container">
     <div class="table-title">Current date: <?php echo date("d.m.Y"); ?></div>
@@ -90,4 +88,3 @@
  ?>
 
 <?php include('views/partials/footer.view.php') ?>
-
