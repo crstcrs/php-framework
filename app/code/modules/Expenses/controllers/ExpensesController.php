@@ -37,7 +37,7 @@ class ExpensesController{
         $employee = $this->getEmployees();
         if(isset($_POST['user_id'])){
             for ($i=0;$i<sizeof($_POST['user_id']);$i++){
-                App::get('database')->update('INSERT INTO expenses (user_id,month,tax1,tax2,paid) VALUES ("'.$_POST['user_id'][$i].'","'.sprintf("%2d",$_POST['month'][$i]).'","'.$_POST['CAM'][$i].'","'.$_POST['CAS'][$i].'",0)');
+                App::get('database')->update('INSERT INTO expenses (user_id,month,tax1,tax2,paid) VALUES ("'.$_POST['user_id'][$i].'","'.$_POST['month'][$i].'","'.$_POST['CAM'][$i].'","'.$_POST['CAS'][$i].'",0)');
             }
         }
         return App::get('helper')->view('expenses/expensesAdd', ['bodyClasses' => 'expensesAdd','employee' => $employee]);

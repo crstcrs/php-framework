@@ -20,7 +20,7 @@
                    for($m=1; $m<=12; ++$m) {
                        echo date('F', mktime(0, 0, 0, $m, 1)) . '<br>';
                        ?>
-                       <option value="<?php echo sprintf("%02d", $m);?>" <?php if(isset($_POST['month']) && $_POST['month'] == sprintf("%02d", $m)){ echo 'selected';}elseif(!isset($_POST['month']) && $m == date ('m')){echo 'selected';} ?>><?php echo date('F', mktime(0, 0, 0, $m, 1)); ?></option>
+                       <option value="<?php echo $m;?>" <?php if($m == date ('m')){echo 'selected';} ?>><?php echo date('F', mktime(0, 0, 0, $m, 1)); ?></option>
                        <?php
                    }
                    ?>
