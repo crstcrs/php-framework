@@ -14,7 +14,7 @@
             ?>
         </select>
     </form>
-    <a href="/expensesAdd">Add Tax</a>
+    <a class="addtax" href="/expensesAdd">Add Tax</a>
     <form method="POST" action="/pay">
     <table>
         <thead>

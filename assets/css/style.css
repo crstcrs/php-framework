@@ -266,3 +266,45 @@ font-size: 20px;
 table#calendar-demo .calendar-date-holder {
     height: 300px;
 }
+body.expensesAdd .back {
+    display: inline-block;
+    background: #F35201;
+    color: white;
+    padding: 3px 12px;
+    border: 0;
+    border-top: 1px solid #CA4201;
+    border-bottom: 1px solid #CA4201;
+    cursor: pointer;
+    outline: 0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+body.expenses .addtax {
+    display: inline-block;
+    background: #F35201;
+    color: white;
+    padding: 3px 12px;
+    border: 0;
+    border-top: 1px solid #CA4201;
+    border-bottom: 1px solid #CA4201;
+    cursor: pointer;
+    outline: 0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.add-tax:hover {
+    cursor: pointer;
+}
+.remove:hover {
+    cursor: pointer;
+}
+.add-tax {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+body.expensesAdd table {
+    margin-bottom: 0;
+}
