@@ -14,7 +14,6 @@ class IndexController {
         $email = $_POST['email'];
         $password = hash('sha512', $_POST['password']);
 
-
         $results = App::get('database')->select('SELECT * FROM users WHERE email = :email AND password = "'.$password.'" ', array(':email' => $email));
 
         if(!empty($results)) {
