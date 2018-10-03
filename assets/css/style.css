@@ -308,3 +308,22 @@ body.expenses .addtax {
 body.expensesAdd table {
     margin-bottom: 0;
 }
+.stop {
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+    background-color: red;
+}
+.start {
+    background-color: limegreen;
+    border-top: 1px solid limegreen;
+    border-bottom: 1px solid limegreen;
+}
+.submit.start:hover {
+    background-color: turquoise;
+    border-top: 1px solid turquoise;
+    border-bottom: 1px solid turquoise;
+}
+.stop:hover {
+    border-top: 1px solid #CA4201;
+    border-bottom: 1px solid #CA4201;
+}

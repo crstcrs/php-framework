@@ -2,7 +2,7 @@
 <div class="sidebar">
     <ul class="navigation">
         <li><a href="/dashboard" class="<?php if(trim($_SERVER['REQUEST_URI'], '/') == 'dashboard'): echo 'active'; endif; ?>"><i class="fa fa-tachometer" aria-hidden="true"></i> <span>Dashboard</span></a></li>
-        <li><a href="/attendance" class="<?php if(trim($_SERVER['REQUEST_URI'], '/') == 'attendance'): echo 'active'; endif; ?>"><i class="fa fa-pencil" aria-hidden="true"></i> <span>Attendance</span></a></li>
+        <li><a href="/attendance" class="<?php if(trim($_SERVER['REQUEST_URI'], '/') == 'attendance' || trim($_SERVER['REQUEST_URI'], '/') == 'startAt' ): echo 'active'; endif; ?>"><i class="fa fa-pencil" aria-hidden="true"></i> <span>Attendance</span></a></li>
         <li><a href="/timetrack" class="<?php if(trim($_SERVER['REQUEST_URI'], '/') == 'timetrack'): echo 'active'; endif; ?>"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Time Tracking</span></a></li>
         <li><a href="/holiday" class="<?php if(trim($_SERVER['REQUEST_URI'], '/') == 'holiday'): echo 'active'; endif; ?>"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Vacation</span></a></li>
     <?php if (App::get('helper')->isAdmin() || App::get('helper')->hasRights() ):?>

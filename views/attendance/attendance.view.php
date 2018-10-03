@@ -1,6 +1,10 @@
 <?php include('views/partials/header.view.php') ?>
 <form method="POST" action="/startAt">
-    <button type="submit" class="submit">Start</button>
+    <?php if($start % 2 == 0): ?>
+    <button type="submit" class="submit start">Start</button>
+    <?php else : ?>
+    <button type="submit" class="submit stop">Stop</button>
+    <?php endif;?>
 </form>
 <form id="foo" method="POST" action="">
     <label >Filter</label>
@@ -83,8 +87,5 @@
     </tbody>
 </table>
 </div>
-<?php
-
- ?>
 
 <?php include('views/partials/footer.view.php') ?>

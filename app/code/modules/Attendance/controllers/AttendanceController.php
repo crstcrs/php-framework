@@ -26,6 +26,7 @@ class AttendanceController
             $vacationDay[date("d.m.Y",$vacationD->vacation_date)] = true;
         }
         $hours = array();
+        $start = 0;
         foreach($sortedDates as $today => $newDate) {
             $i = 0;
             foreach($newDate as $oneDate) {
@@ -45,6 +46,7 @@ class AttendanceController
                         'value' => $diff
                     );
                 }
+                $start = $i;
                 $i++;
             }
         }
@@ -88,12 +90,12 @@ class AttendanceController
                     }
                 endforeach;
             endforeach;
-        return App::get('helper')->view('attendance/attendance', ['bodyClasses' => 'attendance','dates'=>$thisMonth]);
+        return App::get('helper')->view('attendance/attendance', ['bodyClasses' => 'attendance','dates' => $thisMonth,'start' => $start]);
     }
     public function startAt() {
         $id = Login::isLoggedIn();
         App::get('database')->update('INSERT INTO attendance (user_id,date) VALUES ("'.$id.'","'.time().'")');
-        Helper::redirect("/attendance");
+        $this->attendance();
     }
     protected function isWeekend($date) {
         return (date('N', strtotime($date)) >= 6);
