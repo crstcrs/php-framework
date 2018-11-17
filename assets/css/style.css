@@ -327,3 +327,17 @@ body.expensesAdd table {
     border-top: 1px solid #CA4201;
     border-bottom: 1px solid #CA4201;
 }
+
+.desc {
+    display: none;
+    position: absolute;
+    background: white;
+    padding: 10px;
+    border: 1px solid gray;
+}
+.desc.active {
+    display: block;
+}
+.prog-bar.worked:hover {
+    cursor: pointer;
+}

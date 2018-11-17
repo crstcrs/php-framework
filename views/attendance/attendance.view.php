@@ -1,11 +1,40 @@
 <?php include('views/partials/header.view.php') ?>
-<form method="POST" action="/startAt">
-    <?php if($start % 2 == 0): ?>
-    <button type="submit" class="submit start">Start</button>
-    <?php else : ?>
-    <button type="submit" class="submit stop">Stop</button>
-    <?php endif;?>
-</form>
+<?php  switch ($start) {
+    case(null): ?><form method="post" action="/startAt">
+        <button type="submit" class="submit start">Start</button>
+    </form><?php
+        break;
+    case('first'): ?><button type="button" class="open-modal submit stop" data-action="work-description">Stop</button><?php
+        break;
+    default:?>
+        <?php if($start % 2 == 0) : ?>
+            <form method="post" action="/startAt">
+                <button type="submit" class="submit start">Start</button>
+            </form>
+        <?php else: ?>
+            <button type="button" class="open-modal submit stop" data-action="work-description">Stop</button>
+        <?php endif;?>
+        <?php break;
+} ?>
+    <div class="modal work-description">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Work description</p>
+                <button class="delete close-modal" aria-label="close"></button>
+            </header>
+            <form method="post" action="/stopAt">
+                <section class="modal-card-body">
+                    <div class="descrition">
+                        <input type="text" name="work-description" placeholder="Describe what you have done"/>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                </footer>
+            </form>
+        </div>
+    </div>
 <form id="foo" method="POST" action="">
     <label >Filter</label>
     <select name="month" onchange='if(this.value != 0) { this.form.submit(); }'>
@@ -61,7 +90,7 @@
                         $lenght = ($times['value']*100) / $totalHours;}
                     $backgroundColor = ($times['type'] == 0) ? '#ff0000' : '#00e600';
                     ?>
-                    <div style="float: left;width: <?php echo $lenght ?>%; background: <?php echo $backgroundColor ?>; height: 100%;"></div>
+                    <div class="prog-bar <?php echo $type = $times['type'] == 1 ? 'worked' : '' ?>" style="float: left;width: <?php echo $lenght ?>%; background: <?php echo $backgroundColor ?>; height: 100%;"><?php if($times['type'] == 1): ?><span class="desc"><?= $times['description']; ?></span><?php endif;?></div>
                 <?php
                 endforeach; ?></div></td><td class="total-worked"><?php $totalWorked += $worked; echo gmdate("H:i:s", $worked); ?> </td><td><?php
                     if(isset($date['weekend'])){echo "Weekend";}else{ $remaining = 28800 - $worked ; $totalRemaining += $remaining; echo gmdate("H:i:s", $remaining );}?></td></tr>
@@ -87,5 +116,12 @@
     </tbody>
 </table>
 </div>
+    <script>
+        $(document).ready(function(){
+            $(document.body).on('click','.prog-bar', function (){
+                $(this).find(".desc").toggle('active');
+            });
 
+        });
+    </script>
 <?php include('views/partials/footer.view.php') ?>

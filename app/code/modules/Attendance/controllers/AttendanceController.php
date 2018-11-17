@@ -14,19 +14,29 @@ class AttendanceController
         }else{
             $id = Login::isLoggedIn();
         }
-        $dates = App::get('database')->select('SELECT date FROM attendance WHERE user_id ="'.$id.'" ORDER BY date ASC');
+        $dates = App::get('database')->select('SELECT date,description FROM attendance WHERE user_id ="'.$id.'" ORDER BY date ASC');
         $vacation = App::get('database')->select('SELECT vacation_date FROM vacation WHERE user_id ="'.$id.'" ORDER BY vacation_date ASC');
         $sortedDates=array();
         $vacationDay=array();
         $thisMonth=array();
+        switch (count($dates)) {
+            case(0): $start = null;
+            break;
+            case(1): $start = 'first';
+            break;
+            default: $start = 0;
+            break;
+        }
         foreach($dates as $date){
-            $sortedDates[date("d.m.Y",$date->date)][] = $date->date;
+            $sortedDates[date("d.m.Y",$date->date)][] = array(
+                'date' => $date->date,
+                'description' => $date->description
+            );
         }
         foreach ($vacation as $vacationD){
             $vacationDay[date("d.m.Y",$vacationD->vacation_date)] = true;
         }
         $hours = array();
-        $start = 0;
         foreach($sortedDates as $today => $newDate) {
             $i = 0;
             foreach($newDate as $oneDate) {
@@ -34,16 +44,18 @@ class AttendanceController
                     break;
                 }
                 if ($i % 2 == 0) {
-                    $diff = strtotime(date("Y-m-d H:i:s",$newDate[$i + 1])) - strtotime(date("Y-m-d H:i:s",$oneDate));
+                    $diff = strtotime(date("Y-m-d H:i:s",$newDate[$i + 1]['date'])) - strtotime(date("Y-m-d H:i:s",$oneDate['date']));
                     $hours[$today][] = array(
                         'type' => 1,
-                        'value' => $diff
+                        'value' => $diff,
+                        'description' => $oneDate['description']
                     );
                 } else {
-                    $diff = strtotime(date("Y-m-d H:i:s",$newDate[$i + 1])) - strtotime(date("Y-m-d H:i:s",$oneDate));
+                    $diff = strtotime(date("Y-m-d H:i:s",$newDate[$i + 1]['date'])) - strtotime(date("Y-m-d H:i:s",$oneDate['date']));
                     $hours[$today][] = array(
                         'type' => 0,
-                        'value' => $diff
+                        'value' => $diff,
+                        'description' => $oneDate['description']
                     );
                 }
                 $start = $i;
@@ -95,7 +107,14 @@ class AttendanceController
     public function startAt() {
         $id = Login::isLoggedIn();
         App::get('database')->update('INSERT INTO attendance (user_id,date) VALUES ("'.$id.'","'.time().'")');
-        $this->attendance();
+        Helper::redirect('/attendance');
+    }
+    public function stopAt(){
+        $id = Login::isLoggedIn();
+        $workid = App::get('database')->select('SELECT id FROM attendance WHERE user_id ="'.$id.'" ORDER BY date DESC LIMIT 1');
+        App::get('database')->update('UPDATE attendance SET description ="'.$_POST['work-description'].'" WHERE id = "'.$workid[0]->id.'"');
+        App::get('database')->update('INSERT INTO attendance (user_id,date) VALUES ("'.$id.'","'.time().'")');
+        Helper::redirect('/attendance');
     }
     protected function isWeekend($date) {
         return (date('N', strtotime($date)) >= 6);

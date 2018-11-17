@@ -24,13 +24,23 @@
             <p class="modal-card-title">New Project</p>
             <button class="delete close-modal" aria-label="close"></button>
         </header>
+        <form method="post" action="/projectAdd">
         <section class="modal-card-body">
-
+            <div class="project-name">
+        <input type="text" name="project-name" placeholder="Project name"/>
+            </div>
+            <div class="project-date">
+                <input type="text" name="deadline" placeholder="Deadline"/>
+            </div>
+            <div class="project-budget">
+                <input type="text" name="budget" placeholder="Budget"/>
+            </div>
         </section>
         <footer class="modal-card-foot">
             <button class="button is-success">Save changes</button>
             <button class="button">Cancel</button>
         </footer>
+        </form>
     </div>
 </div>
 <?php include('views/partials/footer.view.php') ?>
